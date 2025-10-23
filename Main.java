@@ -1,18 +1,19 @@
+import controller.Control;
 import data.data;
-import java.nio.file.*;
+import java.io.IOException;
+import java.util.Scanner;
 
 public class Main {
-    public static void main(String[] args) {
-        
-        try {
-            String Json = "{\n\tnama : "+ data.orang1.getNama() +",\n\tberat : "+ data.orang1.getBerat() +"\n}";
+    public static void main(String[] args) throws IOException, InterruptedException {
 
-            Files.writeString( Path.of("data.json"), Json);
-            System.out.println("Telah Berhasil dibuat");
-            
-        } catch (Exception e) {
-            System.out.println("Telah gagal");
+        data.loadData();
+
+        while(Control.run){
+            Scanner command = new Scanner(System.in);
+            String input = command.nextLine();
+            Control.runCommand(input);
         }
 
+        // data.saveData();
     }
 }
